@@ -56,3 +56,28 @@
 - Verification one liner: verification is testing an application and its auxiliary resources without the app running
 - Validation one liner: validation is testing an application and auxiliary resources with the app running
     - training will primarily be focused on validation activities
+
+# How do you know if you are doing QA/QC/Verification/Validation?
+- In the same way developers know what the API/Service/Repository layer of the application should do through the documentation and conversations had with stakeholders, Testers use the same resources to determine what the "requirements" are for the application that need to be tested
+
+# Requirements
+- Business Logic handled in the service layer == Requirement
+- API specifications (routes, data in requests/responses, status codes, etc) == Requirement
+- Repository queries and result sets returned == Requirement
+- some common forms requirements take
+    - software requirement specification documentation
+    - use cases
+    - user stories
+    - converation with stakeholder
+    - requirement traceability matrix
+    - etc.
+
+# How do we talk about "problems" in a technical sense?
+- if anything unexpected happens in your testing, you have **discovered a "defect"**
+    - any deviation, no matter how big or small, from the expected, is a defect
+- if something unexpected happens (aka defect is discovered) while the application is running (this can be during a test, an end user using the application, etc.) this is called a "failure"
+    - this means all failures are defects, but not all defects are failures
+- if a defect is discovered but it is due to our mistake we classify it as an "error"
+- In essence, we are answering the question "Is this a problem with the application, or is it a problem with our code?"
+    - did we write a bad test? That's an "error"
+    - did the application not work correctly? That's a "failure"
