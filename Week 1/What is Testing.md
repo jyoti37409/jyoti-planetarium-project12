@@ -85,4 +85,39 @@
 # Automated vs Manual Testing
 - Automated testing is having software test for you
     - require creation by testers
+    - requires technical knowledge
+        - knowing how to code
+        - understand the tech stack
+    - slow to start, but ends up being more quickly completed than manual testing in the long run
+    - not subject to human error when repeating actions
+        - not subject to fatigue/distraction like people are
+    - particularly useful for dynamic testing
 - Manual testing is performing the testing yourself
+    - slower than automated testing
+    - still superior to automated testing when the test results are subjective in nature
+        - is the application pleasing to look at
+        - is the application intuitive to use
+        - Does the application "flow" naturally
+        - think "does interpreting the test result require giving an opinion rather than validating a fact?" If the answer is yes, then manual testing is propably a better choice than automated testing
+    - unlike automated testing, which takes a long time to get started, manual testing can be started by non-technical individuals right away
+        - this type of testing is fine for smaller features/applications, but it does not scale well
+
+In short, manual testing is still excellent for subjective tests, automated testing should be preferred when possible for tests with clear-cut pass/fail results
+
+# Test Objective & Test Object
+- Test Condition = determined from one or more test basis, describes from a high level perspective what testing needs to be done
+- Test Objective = determined through a combination of requirements, test conditions, and project scope. Test Objectives are "low level" or specific goals for testing
+
+one liner: test conditions are high level/broad descriptions of the testing that needs to be done, and Test Objectives are low level/detailed descriptions of the testing that needs to be done
+![test condition/objective](condition-objective.png)
+
+# Happy Path vs Sad Path
+- Happy Path / Positive Testing
+    - testing done with "valid" input
+        - "valid" input is any data/action included during a test that conforms itself to all requirements
+    - testing in the following way: "given valid input, the expected output is achieved"
+- Sad Path / Negative Testing
+    - testing done with "invalid" input
+        - "invalid" input is any data/action included during a test that does not conform itself to all requirements
+            - this can be one or more requirements that are not followed
+    - testing in the following way: "given invalid input, the expected output is achieved"
