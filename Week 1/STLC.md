@@ -1,0 +1,48 @@
+# Standard Testing Lifecycle
+The STLC has 6 phases to it:
+- Requirements Analysis****
+    - During this phase you are recognizing and determining what your **test conditions** are based upon your **test basis**
+        - test basis = the stuff that determines the testing you need to do
+            - requirements documentation
+            - conversations with stakeholders
+            - previous testing documentation
+            - etc.
+        - test conditions = what you need to do for testing from a broad perspective
+            - functional testing of application features
+            - static testing of the design documents
+    - to put it simply, during requirements analysis you analyze the stuff that tells you what needs to be tested in order to determine what needs to be tested
+    - it is common to create (if one does not already exist) a **requirements traceability matrix** during this time
+        - this is a document that is meant to help map requirements and features that are linked
+        - it can also be used to map test data with features/requirements, link testers with specific features, etc.
+        - rtms should work like a central source of "truth" concerning your testing: it will either have the information you need, or it should be able to point you in the right direction to get the info you need
+        - often rtms will also map **user stories** with their **acceptance criteria**
+            - user story = a phrase that describes a feature/capability of the application in a tech agnostic way
+                - usually follow a similar design pattern for the:
+                    - As a....
+                        - user
+                        - admin
+                        - employee
+                        - system
+                    - I want....
+                        - to log in
+                        - to request pto
+                        - to make a reimbursement request
+                        - to add a friend to my friend list
+                    - So that....
+                        - I can access my account
+                        - I can take a vacation
+                        - I can get my money back
+                        - I can stay connected with my friend
+        - User stories are a collection of actor, action, and desired end result. Acceptance criteria lays out step by step how the actor performs the actions to reach the desired end result
+            - example user story: As a user I want to log in so I can access my account
+                - user goes to the login page
+                    - describes the starting condition 
+                - user enters their credentials and clicks the login button
+                    - this one describes the action/s taken to complete the user story
+                - user should be sent to the homepage of the application
+                    - this one describes the end conditions of the user story
+- Test Planning
+- Test Case Design
+- Test Environment Setup
+- Test Execution
+- Test Closure
