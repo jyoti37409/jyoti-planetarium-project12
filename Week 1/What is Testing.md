@@ -81,3 +81,8 @@
 - In essence, we are answering the question "Is this a problem with the application, or is it a problem with our code?"
     - did we write a bad test? That's an "error"
     - did the application not work correctly? That's a "failure"
+
+# Automated vs Manual Testing
+- Automated testing is having software test for you
+    - require creation by testers
+- Manual testing is performing the testing yourself
