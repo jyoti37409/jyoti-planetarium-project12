@@ -52,3 +52,18 @@ What are some strategies we can use in order to be confident we have sufficientl
 - the benefit of a state transition diagram is how it lays out what the valid and invalid state transitions are: this informs testers of what kind of actions should be valid and when they are valid. Sad path testing would include trying to change from one state to another in an invalid way
     - in the paint example, an invalid transition according to the diagram is going from being logged off to playing directly: tests should be created to validate this is not possible
 ![example state transition diagram](state-transition-diagram.png)
+
+## Writing actual test scenarios
+Just having test data is not enough: it must be organized in meaningful ways in order to create meaningful "test scenarios". A test scenario is simply a collection of data, actions, and expected results. This is also known as a "test case". there are some common ways of organizing data/actions in order to create test scenarios
+
+### Decision Table
+A decision table takes a collection of input data (actual data, actions, etc) and based on the collection of data, we list the expected results of actions taken with that input data
+
+|username|password|registration result|
+|-|-|-|
+|valid|valid|success|
+|invalid|valid|fail|
+|valid|invalid|fail|
+|invalid|invalid|fail|
+
+the decision table above shows us that we have four test scenarios we can automate, one is a happy path scenario, the other three are sad path scenarios

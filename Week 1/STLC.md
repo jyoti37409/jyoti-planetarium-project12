@@ -42,7 +42,25 @@ The STLC has 6 phases to it:
                 - user should be sent to the homepage of the application
                     - this one describes the end conditions of the user story
 - Test Planning
+    - once the analysis has been completed, a schedule and estimates need to be created
+        - estimating story points
+        - estimating costs
+        - estimating risk
+        - estimating deadlines
+        - etc.
+    - when the work is done a roadmap for completing the testing cycle should be complete 
 - Test Case Design
+    - test data needs to be created
+    - test scripts need to be set up
+        - this can be actual scripts
+        - or it can be full blown test applications
+    - test case design and test environment setup phases can have significant overlap
 - Test Environment Setup
+    - creating/configuring the resources needed to execute your tests
+    - set things up so your tests will provide meaningful information
 - Test Execution
+    - run your tests
+    - generate your results
 - Test Closure
+    - report on any defects
+    - finalize test reports
