@@ -1,0 +1,5 @@
+# HTML
+Hyper Text Markup Language is one of the core building blocks of the internet. Every button you have pressed, every menu you have navigated, every link followed, has had you engaging with some form of HTML. All the fancy frameworks and websites you use, at their core, are built upon HTML
+
+# Elements
+All web elements are created in HTML files using HTML tags. These tags can be solo tags or they can be open and closing tags. Take header elements for instance: the h1-h6 elements are meant to be used as headers for sections of your web page. These elements expect you to place text content inside of them between the opening and closing tags. On the other hand, elements like the img element have a single tag in which you adjust the properties of that element to change how it renders content on the page
