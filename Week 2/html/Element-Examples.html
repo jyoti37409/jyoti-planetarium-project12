@@ -54,6 +54,96 @@
         In the two lists above, all the list items are descendants of the body element
     -->
 
+    <!-- 
+        Select elements can be used when you want to provide users with the option to choose one
+        or more items from a list. You can create resources to "select" by using the option element
 
+        Keep in mind when working with Option elements that the visible content of the element wrapped
+        between the opening and closing tags and the "value" of the option, set via the value attribute,
+        are separate. If a value is not set for an Option then its value is considered null, no matter
+        what the visible text of the option
+    -->
+    <!-- single select example -->
+     <h3>Favorite Pet</h3>
+    <select>
+        <option></option>
+        <!-- we have to set the value attribute directly to assign the value to the option -->
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="bird">Bird</option>
+        <option value="fish">Fish</option>
+    </select>
+    <h3>Groceries to add to grocery List</h3>
+    <!-- multi select example -->
+    <select multiple="true">
+        <optgroup label="Veggies">
+            <option value="lettuce">Lettuce</option>
+            <option value="celery">Celery</option>
+            <option value="pepper">Bell Pepper</option>
+        </optgroup>
+        <optgroup label="Meats">
+            <option value="delicious">Bacon</option>
+            <option value="chicken">Chicken</option>
+            <option value="steak">Steak</option>
+        </optgroup>
+        <optgroup label="Dairy">
+            <option value="milk">Milk</option>
+            <option value="cheese">Cheese</option>
+            <option value="yogurt">Yogurt</option>
+        </optgroup>
+    </select>
+
+    <!-- 
+        There are a collection of elements that are meant to be used for organizing your web pages.
+        Div is one of the more common versions of these "semantic" elements. In the case of a Div, which
+        is a block element, it is designed to group related elements within their own block of code
+    -->
+    <div>
+        <!-- 
+            Label elements are used to specify what the usecase or title of an input or other related
+            Form elements are. These help with accessability tools when parsing content on a web page,
+            and if the web request features of a Form element are used, labels help with constructing
+            the request body
+        -->
+        <label for="username">please enter your username</label>
+        <!-- 
+            Input elements are used when user input is required for functionality of the web page. These
+            Elements are very flexible and can be configured to fit most needs when it comes to capturing
+            user interactions on the page
+        -->
+        <input type="text" id="username">
+        <label>Please enter your password
+            <input type="password">
+        </label>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- 
+        there are a multitude of types of inputs you can use
+    -->
+    <input type="text" placeholder="Generic text input">
+    <input type="password" placeholder="Hidden password input">
+    <input type="checkbox">
+    <input type="radio">
+    <input type="file">
+    <p id="rangeOutput"></p>
+    <input type="range" min="0" max="100" id="rangeInput">
+
+    <br>
+    <br>
+    <br>
+    <br>
 </body>
+<script>
+    // showcasing range in action
+    const rangeInput = document.getElementById("rangeInput");
+    const rangeOutput = document.getElementById("rangeOutput");
+    rangeInput.addEventListener("input",()=>{
+        rangeOutput.textContent = rangeInput.value;
+    });
+    rangeOutput.textContent = rangeInput.value;
+</script>
 </html>
