@@ -132,6 +132,45 @@
     <p id="rangeOutput"></p>
     <input type="range" min="0" max="100" id="rangeInput">
 
+    <!-- 
+        Table elements in a web page are actually a collection of child and descendant elements
+        within the root "table". The structure of a table element is similar to that of a web page.
+        A web page has the html element as the root, and then a header with meta data and a body with
+        the content of the page.
+
+        In a similar fashion, table elements are the "root" of the table, and there are two child
+        elements that contain the table content. A table header is used to hold column titles, and a
+        table body holds the content of the table
+
+        For each row of data within the header/body of your table you use table row elements to
+        organize your rows of data. If you are setting up header data you would store that information
+        inside of table header elements. If you are setting up table body data you would store that information
+        inside of table data elements
+    -->
+    <table>
+        <thead>
+            <!-- This is where the titles of the table columns go -->
+            <tr>
+                <th>Table Header 1</th>
+                <th>Table Header 2</th>
+                <th>Table header 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- This is where the content of the table goes -->
+             <tr>
+                <td>data 1</td>
+                <td>data 2</td>
+                <td>data 3</td>
+             </tr>
+             <tr>
+                <td>data 4</td>
+                <td>data 5</td>
+                <td>data 6</td>
+             </tr>
+        </tbody>
+    </table>
+
     <br>
     <br>
     <br>
