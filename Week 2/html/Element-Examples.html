@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Element Examples</title>
+</head>
+<body>
+    <!-- 
+        Use Header elements when you want to create some kind of heading
+        for a section of your web page
+    -->
+    <h1>This is a header</h1>
+
+    <!-- 
+        Use img elements when you want to render images on your page. The src attribute is used
+        to provide the browser with the URL for the image (can be web based or local path). alt
+        can be used to display text if the src URL is broken (bad web request, new local path, etc.)
+    -->
+    <img src="example-image.png" alt="won't display">
+    <img src="examplee-image.png" alt="displayed if src url is broken">
+
+    <!-- 
+        Use the p element when you have a paragraph of text you want to display
+    -->
+    <p>Paragraph elements can be used to hold text</p>
+
+    <!-- 
+        There are two types of lists you can generate with base HTML: ordered and unordered
+        lists. Here is our first example of how parent elements can change the way their child
+        elements are rendered. Ordered List elements make their child list items numbered, whereas
+        Unordered Lists make it so their list items are unnumbered. The attributes of parent
+        elements will oftentimes affect the attributes of the child elements
+    -->
+    <ol>
+        <!-- 
+            In this ordered list ol is the parent, the li elements are the children of ol,
+            and the li elements are siblings of one another
+        -->
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+    </ol>
+    <ul>
+        <!-- 
+            In this unordered list ul is the parent, the li elements are the children of ul,
+            and the li elements are siblings of one another
+        -->
+        <li>Apple</li>
+        <li>Orange</li>
+        <li>Pear</li>
+    </ul>
+    <!-- 
+        In the two lists above, all the list items are descendants of the body element
+    -->
+
+
+</body>
+</html>
