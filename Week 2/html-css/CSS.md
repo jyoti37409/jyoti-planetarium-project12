@@ -8,3 +8,8 @@ You can apply CSS to an element by directly setting the styling properties of th
 
 ## Internal Styling
 To better organize your styling you can create a style element in your header and use CSS selectors to target one or more elements in the body of your page with styling. 
+
+Be careful when you have a combination of internal and inline styling: any inline styling will override the internal styling you specify
+
+## External Styling
+You can separate your styling from your html by storing it inside of a .css file and linking that file in your web page. Keep in mind that external styling has the lowest level of priority for styling: any internal or inline styling will override the properties you set in your external style sheet

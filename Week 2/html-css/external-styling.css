@@ -1,0 +1,7 @@
+/* 
+    Here we are targeting direct child span elements of divs. If they are
+    not direct children the styling will not be applied
+*/
+div > span {
+    color: aquamarine;
+}

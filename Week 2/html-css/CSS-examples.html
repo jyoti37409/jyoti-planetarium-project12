@@ -21,10 +21,16 @@
         */
         #paragraph1 {
             color: red;
+            border: 3px dashed blue;
+            padding: 10px;
+            margin: 40px;
         }
 
         #paragraph2 {
             color: green;
+            border: 20px solid pink;
+            padding-bottom: 30px;
+            margin: 100px;
         }
 
         /* 
@@ -37,7 +43,33 @@
         #container1 {
             text-transform: lowercase;
         }
+
+        /* 
+            Similar to the id selector, class selectors start with a . and then the name of
+            the class being targeted
+        */
+        .tableHeader{
+            color: brown;
+        }
+
+        .tableBody {
+            text-align: center;
+            color: yellowgreen;
+
+        }
+
+        th {
+            border: 1px solid blue;
+            padding: 10px
+        }
+
+        td {
+            border: 1px solid darkslategrey;
+        }
+
     </style>
+    <!-- We can link external styling using a link element like the example below -->
+    <link rel="stylesheet" href="external-styling.css">
 </head>
 <body>
     <div id="container1">
@@ -45,6 +77,42 @@
         <h1 style="color: purple;text-align: center;">CSS Example Header</h1>
         <p id="paragraph1">This page showcases some ways that CSS works in the browser and how it interacts with various web elements</p>
         <p id="paragraph2">We can apply styling to elements on the web page through various means</p>
+    </div>
+    <div id="container2">
+        <!-- the class assignments below allow us to group related elements and target them as a group -->
+        <table>
+            <thead class="tableHeader">
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                    <th>Column 3</th>
+                </tr>
+            </thead>
+            <tbody class="tableBody">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td style="border: 10px solid black;">5</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="container3">
+        <span>Span 1</span>
+        <!-- Because Span 4 is not a direct child of container3 it will not receive styling -->
+        <p><span>Span 4</span></p>
+        <span>Span 2</span>
+        <span>Span 3</span>
     </div>
 </body>
 </html>
