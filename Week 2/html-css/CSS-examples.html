@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Examples</title>
+    <!-- Below is an example of internal styling: we can make use of CSS selectors to target elements with styling information -->
+    <style>
+        /* 
+            Below is an example of the tag selector: the styling will affect
+            all paragraph elements on the page
+        */
+        p {
+            text-align: center;
+        }
+
+        /* 
+            You can target elements via their attributes: targeting elements
+            by their ID is an easy way to make sure you are targeting only the 
+            element you want to style, since ids should be unique
+        */
+        #paragraph1 {
+            color: red;
+        }
+
+        #paragraph2 {
+            color: green;
+        }
+
+        /* 
+            Styling is applied to descendant elements: in the example below all the
+            text of the h1 and p elements will be made lowercase, even though those elements
+            are not directly targeted by this styling
+
+            Keep in mind that not all styling will cascade down, but most will
+        */
+        #container1 {
+            text-transform: lowercase;
+        }
+    </style>
+</head>
+<body>
+    <div id="container1">
+        <!-- Below is an example of in-line styling: styling applied directly to the element -->
+        <h1 style="color: purple;text-align: center;">CSS Example Header</h1>
+        <p id="paragraph1">This page showcases some ways that CSS works in the browser and how it interacts with various web elements</p>
+        <p id="paragraph2">We can apply styling to elements on the web page through various means</p>
+    </div>
+</body>
+</html>
