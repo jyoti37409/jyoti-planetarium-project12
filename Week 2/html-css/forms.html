@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+</head>
+<body>
+    <!-- 
+        Forms used to be the only way you could make requests via a web page: forms have 
+        a built-in ability to make GET and POST requests
+    -->
+    <form method="post">
+        <label >
+            First input for demo
+            <!-- because the input is marked as required the form will not make a request unless it has a value -->
+            <input type="text" name="textInput" placeholder="First input" required>
+        </label>
+        <label>
+            Second input for demo
+            <input type="password" name="secondInput" placeholder="Second Input">
+        </label>
+        <input type="submit">
+    </form>
+</body>
+</html>
