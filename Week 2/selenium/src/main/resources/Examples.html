@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="header">This is our header</h1>
+    <button onclick="alert('here is the text alert')">click me to create an alert</button>
+</body>
+<script>
+    setTimeout(() => {
+        const p = document.createElement("p");
+        p.textContent = "This appears after 1 second";
+        document.body.appendChild(p);
+    }, 1000)
+</script>
+</html>
