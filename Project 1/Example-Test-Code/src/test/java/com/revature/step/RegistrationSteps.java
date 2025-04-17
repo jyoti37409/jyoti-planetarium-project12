@@ -30,6 +30,11 @@ public class RegistrationSteps {
         registrationPage.enterPassword(password);
     }
 
+    @When("the user clicks the register button")
+    public void the_user_clicks_the_register_button(){
+        registrationPage.clickRegisterButton();
+    }
+
     /*
         Note the step syntax below does not match 100% with what we have written in the Feature file.
         Cucumber is able to pass data to our glue methods at runtime, which can simplify the steps we
@@ -37,6 +42,7 @@ public class RegistrationSteps {
      */
     @Then("an alert should appear saying {string}")
     public void an_alert_should_appear_saying(String expectedMessage) {
+        registrationPage.waitForAlert();
         Alert alert = driver.switchTo().alert();
         String actualMessage = alert.getText();
         alert.accept();
