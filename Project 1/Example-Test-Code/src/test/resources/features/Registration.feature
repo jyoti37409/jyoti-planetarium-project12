@@ -7,8 +7,8 @@ Feature: User Registration
 
   # Happy Path Scenario
   Scenario: Valid credential data should allow for registering with the Planetarium
-    When   the user provides a valid username
-    And    the user provides a valid password
+    When   the user provides username "Robin" while registering
+    And    the user provides password "Bobb1" while registering
     # Note the syntax below, assuming you have a plugin for intelisense
     # the section wrapped in quotes tells Cucumber you want to inject the data
     # into the step code that is executed
