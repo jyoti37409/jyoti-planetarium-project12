@@ -52,3 +52,31 @@ The **select** **element** in **HTML** allows users to choose one or more values
 
 ### HTML5 Validation
 There are two forms of client-side validation in **HTML**: **HTML** validation and JavaScript validation. **HTML** validation is faster but less customizable. It includes attributes such as `required`, which indicates that a field must be provided, `type`, which specifies the kind of input, and `pattern`, which specifies the regular expression that the input must match, among others. On the other hand, JavaScript validation takes longer to set up but offers greater flexibility, allowing for custom validation to be programmed according to specific needs
+
+## CSS Foundation
+
+### Overview of CSS
+**Cascading Style Sheets** (**CSS**) provide styling information for web pages and other resources, such as XML, ensuring a consistent look and feel across different browsers. This is because **CSS** is standardized across web browsers, making it a reliable tool for web development. Additionally, there is a large pool of third-party resources available that can help quickly set up attractive styling for web pages
+
+### Inline, Internal, & External Styling
+Styling in **CSS** can be applied in several ways. **Inline styling** is provided directly within an **element** using the `style` **attribute**. **Internal styling** is defined within a **style element**, typically placed in the **header** of the page; placing it later in the page may cause a "flash of unstyled content." **External styling** is sourced from an external stylesheet, linked to the **HTML** document using the link **element** with the `href` and `rel` **attributes**. The order of style precedence is **inline**, **internal**, and then **external**
+
+### CSS Properties
+In **CSS**, **properties** are used to define specific types of styling for **HTML** **elements**. Each **property** is part of a key:value system, where the **property** name is the key and the desired styling is the value. For example, the `color` **property** changes the text color, the `text-align` **property** adjusts the alignment of text, and the `font-size` **property** modifies the size of the text. There are many other **properties** available, each designed to control different aspects of styling, such as `margins`, `padding`, `borders`, and `backgrounds`. Understanding and utilizing these **properties** allows for precise and flexible control over the appearance of web pages
+
+### CSS Selectors
+**CSS selectors** are used to determine how the browser applies styling to **elements**, in conjunction with the form of styling used (inline, internal, or external). Some common **selectors** include the **id selector**, which targets a specific element with a unique identifier; the **class selector**, which targets elements with a specific class **attribute**; the **tag selector**, which targets all **elements** of a particular type; and the **universal selector**, which targets all descendants from the **selector** starting point. Additionally, there are more complex **selectors** that allow for more precise targeting of specific **elements** or collections of **elements**. These complex **selectors** can include attribute selectors, pseudo-classes, and pseudo-elements, which provide greater flexibility and control over the styling of web pages
+
+### CSS Variables
+**CSS variables** are useful when multiple **selectors** share the same values, as they simplify both the initial application and future refactoring. To name a variable, use \-\- followed by the **variable name**, and set its value after a colon. This declaration looks similar to setting the value for a **CSS property**. The declaration must be done within a ruleset, so the **variables** will be valid within the chosen **selector**. For example, using `:root` makes the **variable** valid throughout the entire document
+
+Alternatively, the `@property` rule can be used to declare the property name (still using --), followed by the **CSS** key/value pairs. **Variables** are accessed in **CSS** using the `var()` function, with the **variable** name passed as an argument. This approach allows for consistent and maintainable styling across a web page
+
+### Flexbox
+**CSS Flexbox** allows for organizing **elements** within a container in a uniform way. It provides capabilities such as vertically centering resources, resizing child **elements** to take up the same amount of space, and organizing columns of data. Key **CSS properties** for **Flexbox** include `display`, which enables the flex container capabilities; `flex-direction`, which sets the direction of the flex items; and `flex-wrap`, which controls whether the flex items should wrap onto multiple lines. The `flex-direction` and `flex-wrap` properties can be combined into the `flex-flow` shorthand **property**. Additionally, the `flex` **property** is used to define how a flex item will grow or shrink to fit the available space within the flex container. These **properties** work together to create a flexible and responsive layout for web pages
+
+### Grid
+**CSS Grid** allows for organizing **elements** within a container in a grid-like manner. It enables the creation of columns and rows, with specific values set for each cell in the grid. Key **CSS** properties for using Grid include `display`, which enables the grid container; `grid-template-column`s, which defines the column structure; and `grid-template-rows`, which defines the row structure. There are third-party tools available that can help set up grids for web pages, making it easier to create complex and responsive layouts
+
+## Bootstrap
+**Bootstrap** is a free-to-use third-party resource that provides templates for setting up common web page designs. It offers both free and premium options, allowing users to choose based on their specific needs. Bootstrap can be linked directly within a web page or downloaded for use in projects. This resource can significantly speed up the development process and ensure a professional and consistent design

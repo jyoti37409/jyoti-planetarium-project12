@@ -129,3 +129,241 @@ By parameterizing your steps you can reuse them, cutting down on the total numbe
 To execute **Cucumber** tests, you have several options. If you are using a Cucumber/Gherkin plugin in your IDE, you can "execute" your **feature files** directly. Alternatively, you can create a test runner and facilitate test execution through the runner class. Another method is to use the "test" or "verify" Maven commands to trigger your tests
 
 Note that if you have missing step implementations for your **feature files** suggested step methods will be generated for you: these can be used to jump-start creating the implementation steps for your tests
+
+## Cucumber Auxiliary Features
+
+### Scenario Outline & Examples
+Often **Scenarios** will need to be run multiple times with the only difference being the data used in the steps. In these instances you can create a **Scenario Outline**; these types of **Scenarios** are the same as your regular **Scenarios**, but they also tell **Cucumber** you have a collection of data you need to use with the **Scenario Outline**. **Cucumber** will run your **Scenario Outline** once for each collection of data you provide in an **Examples** table. **Cucumber** will look for the column titles of your data wrapped in diamond brackets and replace them with the data in the data table. **Cucumber** will run the **Scenario Outline** below two times: once for each row of data in the **Examples** table
+```gherkin
+Scenario Outline: user registration should enforce business rules
+    Given   the user is on the registration page
+    When    the user enters "<username>"
+    When    the user enters "<password>"
+    Then    the user should receive "<result>" message
+
+Examples
+|username|password|result|
+|valid   |valid   |success|
+|invalid |valid   |failure|
+```
+
+### Background
+**Scenarios** will often have some sort of shared pre-condition (one or more **Given** statement) that needs to be set up as part of the **Scenario** before the **Acceptance Criteria** can be completed. When the **Scenarios** in a **feature file** share starting conditions you can use a **Background** section to tell **Cucumber** what steps to enact before each **Scenario** in the file. If an action is not shared by ALL **Scenarios** in the **feature file** then the step should go in the individual **Scenario** it applies to
+```gherkin
+Background: Users need to be logged in to use the coffee house app
+    Given   The user is logged in to their coffee house account
+
+Scenario: check account reward points
+    When    the user clicks the My Rewards button
+    ...
+
+Scenario: check order status
+    When    the user clicks the Check Order button
+    ...
+```
+
+### Rule
+Added in version 6 of **Cucumber**, the **Rule** keyword can be used to indicate a specific business rule/requirement that is being addressed in the **feature file**. If a **Feature** being tested has a large collection of associated business rules then the **Rule** keyword can be used to specify what **Scenarios** address specific business rules
+```gherkin
+Feature: User Registration
+    Users can register with the coffee house to track their purchase history and accumulate points
+
+    Rule: Usernames must be unique
+    Scenario: trying to register with a non-unique username fails
+        Given   the user is on the registration page
+        When    the user provides a non-unique username
+        Then    the user should be alerted the name is already taken
+
+    Rule: Usernames must include specific types of characters
+    Scenario: trying to register with a username that does not include the required characters fails
+        Given   the user is on the registration page
+        When    the user provides a username without all the required characters
+        Then    the user should be alerted the name is missing one or more required characters
+```
+
+### Example
+In **Cucumber** the **Scenario** and **Example** keywords are synonymous: they are interchangeable in your **feature files**. Similar to the steps they organize, they provide varied syntactical understanding to the programmer, but **Cucumber** views them as the same: an indicator of a new test
+```gherkin
+Feature: User Registration
+    Users can register with the coffee house to track their purchase history and accumulate points
+
+    # Since all business rules are being adhered to Scenario is a reasonable indicator to use
+    Scenario: users can register with valid credentials
+        Given   the user is on the registration page
+        When    the user provides valid credentials
+        Then    the user should be informed they registered successfully
+
+    # Since the unique username rule is being broken the Rule and Example keywords can be used to specify what is being tested
+    Rule: Usernames must be unique
+    Example: trying to register with a non-unique username fails
+        Given   the user is on the registration page
+        When    the user provides a non-unique username
+        Then    the user should be alerted the name is already taken
+
+    # Since the specific character types rule is being broken Rule and Example are again reasonable keywords to use
+    Rule: Usernames must include specific types of characters
+    Example: trying to register with a username that does not include the required characters fails
+        Given   the user is on the registration page
+        When    the user provides a username without all the required characters
+        Then    the user should be alerted the name is missing one or more required characters
+```
+
+### Hooks
+**Given** statements are used to set up **Scenario** starting conditions, but sometimes further setup is needed that goes beyond the bounds of the **Scenario** being tested. For instance, in order for a user to be logged into a service, their account credentials need to be present in the service system. These kinds of pre-conditions are not always manageable using just your **Given** statements, and if they were handled in your **Given** statements the readability of your **Scenario** would be diminished. In a similar vein, you may want to perform some action based on the results of your **Scenarios**, which would not make sense to have defined within each of the individual **Scenarios**. For instance, if testing a web based application, you may want to take a screen shot of the web page to get a visual of its state if a step fails: this is not something that can easily be added to each **Scenario** in the **feature file** 
+
+All the examples in the previous paragraph are reasonable candidates to be handled in **Hook** steps. **Cucumber** **Hooks** have three primary categories:
+- **Global Hooks**
+- **Scenario Hooks**
+- **Step Hooks**
+
+**Global hooks** are methods that execute a single time either before or after all **Scenarios** are executed. These **hooks** can be used as setup or tear down methods that only need to happen one time (think expensive resource creation, static resource creation, or logging done after all tests are run)
+```java
+// Note the methods are static
+@BeforeAll
+public static void beforeAll() {
+    // Runs before all scenarios
+}
+
+@AfterAll
+public static void afterAll() {
+    // Runs after all scenarios
+}
+```
+
+**Scenario hooks** are methods that execute for each individual **Scenario**, so if you have two **Scenarios** in your test suite, your **Scenario hooks** will trigger twice. Similar to **global hooks**, they can trigger before or after a **Scenario** runs, which makes them useful for setting up and resetting dynamic test data, and for performing post failure **Scenario** actions like taking a screen shot of a web page. **After** hooks can also be passed a `Scenario` object to check values such as the status of the **Scenario**, steps executed, and any error messages generated
+```java
+// Note the methods are instance scoped
+@Before
+public void doSomethingBefore() {
+  // performs one or more actions before each Scenario
+}
+
+@After
+public void doSomethingAfter(Scenario scenario){
+    // performs one or more actions after each Scenario
+}
+```
+
+Finally, **step hooks** can be used to trigger actions before and after individual **Scenario** steps. Both the pre and post option can take in a `Scenario` object as an argument
+```java
+// These are also instance scoped
+@BeforeStep
+public void doSomethingBeforeStep(Scenario scenario){ }
+
+@AfterStep
+public void doSomethingAfterStep(Scenario scenario){ }
+```
+
+### Tags
+**Cucumber** supports **tags** as a way to organize and document your **feature files**. The following **Gherkin** keywords support tagging:
+- **Feature**
+- **Rule**
+- **Scenario**
+- **Scenario Outline**
+- **Examples**
+
+**Tags** can be used to specify what resources to test, and they can also be used to create **conditional hooks**: the following **Scenario hook** will only trigger after **Scenarios** tagged with `@someTag`:
+```java
+@After("@someTag")
+public void doSomethingAfter(Scenario scenario){
+}
+```
+When applying **tags** you need to keep in mind that viable **Gherkin** resources inherit tags from their parent resources: for instance, if you **tag** a **Feature** with `@registration` all **Rule**, **Scenario**, **Scenario Outline**, and **Examples** associated with the **Feature** will inherit the `@registration` tag. Similarly, **tags** on a **Scenario Outline** will be inherited by associated **Examples**
+
+## Cucumber Integrations
+
+### Junit Integration
+**Cucumber** is a framework that works with multiple programming languages, and in some of those languages the framework functions well as a standalone testing framework. Working as a standalone framework in Java is possible, but not ideal: other frameworks such as Junit and TestNG are better suited to drive the testing process with **Cucumber** along for the ride. If you need to use **Cucumber** by itself there is a `Main` class that can be used as the entry point for the test, but it can take a substantial amount of setup that is easier to manage with another test framework. 
+
+**Cucumber** and Junit work well together: Junit provides many useful integrations with other 3rd party software, and **Cucumber** can facilitate testing that uses your **feature files** and step implementations. Depending on the version of Junit you are using you either need the `cucumber-junit` dependency (Junit4) or `cucumber-junit-platform-engine` dependnecy (Junit5). This example will use Junit 4 moving forward
+```xml
+<!-- Junit4 -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>${cucumber.version}</version>
+    <scope>test</scope>
+</dependency>
+```
+
+Once you have the dependencies, you create a test runner where any shared test resources can be configured
+
+```java
+package com.example;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
+
+/*
+    For your CucumberOptions, you will usually want to include a reference to your feature files
+    and the location for your step implementations
+ */
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+    features = "classpath:features/location/here",
+    glue = "package.path.to.steps"
+)
+public class CucumberTestRunner {
+}
+```
+Any resources for your steps can be created in your test runner, and when you are ready to execute your tests you target the runner
+
+### Test Reports
+**Cucumber** has multiple built-in plugins to handle generating test results, two useful ones to keep in mind are **pretty** and **html**. The **pretty** plugin will make **Cucumber** generate an easier to read to report in the CLI, which is useful for intermittent testing, or one off tests. The **html** plugin will generate an HTML test report at the location you specify
+```java
+@CucumberOptions(
+    features = "classpath:features/location/here",
+    glue = "package.path.to.steps",
+    plugin = {"pretty","html:path/to/report.html"}
+)
+```
+
+### Maven Integration
+Maven offers a large collection of plugins, many that can leverage your **Cucumber** test results for reporting and publishing purposes. The **Maven Surefire Plugin** can control JUnit tests and, when Junit is used as a runner for your **Cucumber** tests, **Surefire** can execute them via the `test` command. Working in conjunction with this, the **Maven Surefire Report Plugin** provides fine-tuned control over the publishing of your test reports. By default, it looks for test results in the `surefire-reports` directory, but you can specify other directories as well. Note that versions 2.8 and newer of this plugin require the **Maven Site Plugin** to function correctly. The **Maven Site Plugin** generates web content for publishing project details, including test results generated by the **Surefire Plugin**. Together, these three plugins enable the execution of tests, generation of detailed reports, and publication of results in a user-friendly format
+```xml
+<!-- 
+    The Maven Site Plugin goes in the build section of your POM
+ -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.12.1</version>
+			</plugin>
+
+<!-- 
+    The Maven Surefire Plugin goes in the build section of your POM
+
+    the plugin has a large number of configuration options to facilitate test execution, the example below
+    tells Surefire to only execute tests in the class TestSuite
+ -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.2.1</version>
+				<configuration>
+					<includes>
+						<include>com.revature.example.TestSuite</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+<!-- 
+    The Maven Surefire Report Plugin goes in the reporting section of your POM, the example below shows how
+    you can specify the location of test results that need to be published. The name of the report can
+    also be configured, as seen below
+ -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<reportsDirectories>
+						<reportsDirectory>target/surefire-reports</reportsDirectory>
+            <reportsDirectory>path/to/reports</reportsDirectory>
+					</reportsDirectories>
+					<outputName>TestReportName</outputName>
+				</configuration>
+			</plugin>
+```
