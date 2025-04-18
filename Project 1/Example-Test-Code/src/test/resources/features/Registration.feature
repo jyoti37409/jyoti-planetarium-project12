@@ -39,3 +39,4 @@ Feature: User Registration
     |Robin   |BOBB3   |Invalid password    |
     |Robin   |Bobb3!? |Invalid password    |
     |Robin   |3obbY   |Invalid password    |
+
