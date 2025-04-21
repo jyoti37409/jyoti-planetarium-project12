@@ -48,7 +48,7 @@ public class AddMoonSteps {
     public void the_user_provides_a_valid_moon_name_and_planet_id(String moonName, String planetId) {
         addMoonPage.selectLocationAsMoon();
         addMoonPage.enterMoonName(moonName);
-        addMoonPage.enterOrbitedPlanetId(planetId);  // ✅ set orbited planet ID
+        addMoonPage.enterOrbitedPlanetId(planetId);  //  set orbited planet ID
         addMoonPage.clickButton();
     }
 
@@ -58,7 +58,7 @@ public class AddMoonSteps {
     public void the_moon_name_should_be_saved_on_the_planetarium_home_page() {
         try {
             //  Pause to observe the page (5000 ms = 5 seconds)
-            System.out.println("⏳ Pausing for 5 seconds to observe the page...");
+            System.out.println(" Pausing for 5 seconds to observe the page...");
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();  // Handle interruption

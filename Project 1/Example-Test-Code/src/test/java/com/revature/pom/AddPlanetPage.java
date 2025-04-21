@@ -34,7 +34,7 @@ public class AddPlanetPage extends ParentPOM{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("locationSelect")));
         Select select = new Select(dropdown);
-        select.selectByVisibleText("Planet"); // 💡 must match exactly as shown in the UI
+        select.selectByVisibleText("Planet"); //must match exactly as shown in the UI
     }
 
 
@@ -45,10 +45,10 @@ public class AddPlanetPage extends ParentPOM{
             wait.until(ExpectedConditions.visibilityOf(welcomeMessage));
             String actualText = welcomeMessage.getText().trim();
             String expected = "Welcome to the Home Page " + username;
-            System.out.println("🔍 Comparing greeting: '" + actualText + "' with expected: '" + expected + "'");
+            System.out.println("Comparing greeting: '" + actualText + "' with expected: '" + expected + "'");
             return actualText.equals(expected);  // Use equals for exact match now that we trimmed
         } catch (Exception e) {
-            System.out.println("❌ Failed to find greeting element. HTML:");
+            System.out.println("Failed to find greeting element. HTML:");
             System.out.println(driver.getPageSource());
             throw e;
         }
@@ -81,7 +81,7 @@ public class AddPlanetPage extends ParentPOM{
             ));
             return planetCell.isDisplayed();
         } catch (NoSuchElementException | TimeoutException e) {
-            System.out.println("❌ Planet '" + planetName + "' not found in table.");
+            System.out.println("Planet '" + planetName + "' not found in table.");
             return false;
         }
     }
@@ -89,7 +89,7 @@ public class AddPlanetPage extends ParentPOM{
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-            System.out.println("⚠️ Unexpected alert: " + alert.getText());
+            System.out.println("Unexpected alert: " + alert.getText());
             alert.accept(); // dismisses the alert
             return true;
         } catch (TimeoutException e) {

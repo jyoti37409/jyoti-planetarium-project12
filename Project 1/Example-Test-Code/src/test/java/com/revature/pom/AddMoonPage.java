@@ -36,10 +36,10 @@ public class AddMoonPage extends ParentPOM {
             wait.until(ExpectedConditions.visibilityOf(welcomeMessage));
             String actualText = welcomeMessage.getText().trim();
             String expected = "Welcome to the Home Page " + username;
-            System.out.println("🔍 Comparing greeting: '" + actualText + "' with expected: '" + expected + "'");
+            System.out.println("Comparing greeting: '" + actualText + "' with expected: '" + expected + "'");
             return actualText.equals(expected);
         } catch (Exception e) {
-            System.out.println("❌ Failed to find greeting element. HTML:");
+            System.out.println("Failed to find greeting element. HTML:");
             System.out.println(driver.getPageSource());
             throw e;
         }
@@ -81,7 +81,7 @@ public class AddMoonPage extends ParentPOM {
                     By.xpath("//td[normalize-space()='" + moonName + "']")));
             return moonCell.isDisplayed();
         } catch (NoSuchElementException | TimeoutException e) {
-            System.out.println("❌ Moon '" + moonName + "' not found in table.");
+            System.out.println("Moon '" + moonName + "' not found in table.");
             return false;
         }
     }

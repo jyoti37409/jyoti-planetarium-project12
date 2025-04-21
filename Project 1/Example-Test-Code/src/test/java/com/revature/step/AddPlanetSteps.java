@@ -58,9 +58,9 @@ public class AddPlanetSteps {
         } catch (UnhandledAlertException e) {
             // Handle unexpected alerts
             Alert alert = driver.switchTo().alert();
-            System.out.println("⚠️ Unexpected alert: " + alert.getText());
+            System.out.println("Unexpected alert: " + alert.getText());
             alert.accept();
-            System.out.println("❗ Submission failed due to validation alert.");
+            System.out.println("Submission failed due to validation alert.");
         }
     }
 
@@ -68,13 +68,13 @@ public class AddPlanetSteps {
     @Then("the planet name {string} should be saved on the Planetarium Home Page")
     public void the_planet_name_should_be_saved_on_the_planetarium_home_page(String planetName) {
         try {
-            System.out.println("⏳ Pausing for 5 seconds to observe the page...");
+            System.out.println("Pausing for 5 seconds to observe the page...");
             Thread.sleep(5000);
 
             // Check for alert again before assertion
             if (isAlertPresent()) {
                 Alert alert = driver.switchTo().alert();
-                System.out.println("❗ Alert present during verification: " + alert.getText());
+                System.out.println(" Alert present during verification: " + alert.getText());
                 alert.accept();
                 Assert.fail("Test failed due to validation alert: " + alert.getText());
             }
