@@ -1,7 +1,6 @@
 package com.revature;
 
-import com.revature.pom.LoginPage;
-import com.revature.pom.RegistrationPage;
+import com.revature.pom.*;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
@@ -38,15 +37,22 @@ public class TestRunner {
     public static WebDriver driver;
     public static LoginPage loginPage;
     public static RegistrationPage registrationPage;
+    public static HomePage homePage;
+    public static AddPlanetPage addPlanetPage;
+    public static AddMoonPage addMoonPage;
+
 
     @BeforeClass
-    public static void setup(){
-        // here we initialize the resources and perform any other setup configurations
+    public static void setup() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-        loginPage = new LoginPage(driver,"Planetarium Login");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        driver.manage().window().maximize();
+
+        loginPage = new LoginPage(driver, "Planetarium Login");
         registrationPage = new RegistrationPage(driver, "Account Creation");
+        homePage = new HomePage(driver, "Planetarium Home");
     }
+
 
     @AfterClass
     public static void tearDown(){

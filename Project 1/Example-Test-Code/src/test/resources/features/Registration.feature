@@ -28,7 +28,7 @@ Feature: User Registration
   # For each row of data, Cucumber will execute the associated Scenario Outline
   Examples:
     |username|password|message|
-    |Batman  |Bobb1   |Invalid username    |
+    |John  |Bobb1   |Invalid username    |
     |bobb    |Bobb1   |Invalid username    |
     |Robin!%?|Bobb1   |Invalid username    |
     |3obin   |Bobb1   |Invalid username    |

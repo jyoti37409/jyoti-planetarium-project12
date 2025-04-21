@@ -40,8 +40,11 @@ public class RegistrationPage extends ParentPOM{
         return title;
     }
 
-    public void waitForAlert(){
-        alertWait.until(ExpectedConditions.alertIsPresent());
+    public void waitForAlert() {
+        new WebDriverWait(driver, Duration.ofSeconds(10)) // ⬅️ was 2, now 5 seconds
+                .until(ExpectedConditions.alertIsPresent());
     }
+
+
 
 }
