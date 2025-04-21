@@ -35,7 +35,7 @@ public class AddMoonSteps {
         WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("locationSelect")));
         new Select(dropdown).selectByVisibleText("Moon");
 
-        // ✅ Now wait for the input field to appear
+        // Now wait for the input field to appear
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("moonNameInput")));
 
         // Now continue
@@ -64,7 +64,7 @@ public class AddMoonSteps {
             e.printStackTrace();  // Handle interruption
         }
 
-        // ✅ Perform the actual assertion
+        // perform the actual assertion
         Assert.assertTrue(addMoonPage.isMoonDisplayed("MoonTest2"));
     }
 }
