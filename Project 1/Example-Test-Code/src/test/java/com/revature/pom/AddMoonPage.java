@@ -60,11 +60,19 @@ public class AddMoonPage extends ParentPOM {
     @FindBy(id = "orbitedPlanetInput")
     private WebElement orbitedPlanetInput;
 
-    public void enterOrbitedPlanetId(String planetId) {
+    public void enterOrbitedPlanetId(int planetId) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("orbitedPlanetInput")));
         input.clear();
-        input.sendKeys(planetId);
+        input.sendKeys(String.valueOf(planetId));
+    }
+
+    public void uploadMoonImage(String imagePath){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("moonImageInput")));
+        input.clear();
+        input.sendKeys(imagePath);
+
     }
 
 

@@ -6,8 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -44,27 +43,57 @@ public class AddMoonSteps {
         Assert.assertTrue(addPlanetPage.isWelcomeMessageDisplayed("Batman"));
     }
 
-    @When("the user provides a valid moon name {string} and planet ID {string}")
-    public void the_user_provides_a_valid_moon_name_and_planet_id(String moonName, String planetId) {
+    @When("the user provides a valid moon name {string} and planet ID {int}")
+    public void the_user_provides_a_valid_moon_name_and_planet_id(String moonName, int planetId) {
         addMoonPage.selectLocationAsMoon();
         addMoonPage.enterMoonName(moonName);
         addMoonPage.enterOrbitedPlanetId(planetId);  //  set orbited planet ID
         addMoonPage.clickButton();
     }
 
-
-
-    @Then("the moon name should be saved on the Planetarium Home Page")
-    public void the_moon_name_should_be_saved_on_the_planetarium_home_page() {
-        try {
-            //  Pause to observe the page (5000 ms = 5 seconds)
-            System.out.println(" Pausing for 5 seconds to observe the page...");
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  // Handle interruption
-        }
-
-        // perform the actual assertion
-        Assert.assertTrue(addMoonPage.isMoonDisplayed("MoonTest2"));
+    @When("the user provides a valid moon name {string} and planet ID {int} and image {string}")
+    public void the_user_provides_a_valid_moon_image_path(String moonName, int planetId, String path) {
+        addMoonPage.selectLocationAsMoon();
+        addMoonPage.enterMoonName(moonName);
+        addMoonPage.enterOrbitedPlanetId(planetId);  //  set orbited planet ID
+        addMoonPage.uploadMoonImage(path);
+        addMoonPage.clickButton();
     }
+
+    @Then("moon alert should appear saying {string}")
+    public void moon_alert_should_appear_saying(String expectedAlertText) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        String actualText = alert.getText();
+        System.out.println(" Alert: " + actualText);
+        Assert.assertEquals(expectedAlertText, actualText);
+        alert.accept();
+    }
+
+
+    @Then("the moon name {string} should be saved on the Planetarium Home Page")
+    public void the_moon_name_should_be_saved_on_the_planetarium_home_page(String moonName) {
+        try {
+            System.out.println("Pausing for 5 seconds to observe the page...");
+            Thread.sleep(5000);
+            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(2));
+            try{
+                Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+                String alertText = alert.getText();
+                System.out.println("alert present during verification " + alertText);
+                alert.accept();
+                Assert.fail("Test failed due to alert: " + alertText);
+                return;
+            }
+            catch (TimeoutException ignored){
+            }
+
+            Assert.assertTrue(addMoonPage.isMoonDisplayed(moonName));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
 }

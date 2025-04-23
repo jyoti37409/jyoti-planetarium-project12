@@ -9,5 +9,5 @@ Feature: Add Planet
 
   Scenario: Valid user should add a planet with image
     Given the user is on the planetarium homepage and selects Planet
-    When the user provides a valid planet name "Testplanet" and image path "C:\\Users\\havisha\\Downloads\\saturn.jpg"
-    Then the planet name "Testplanet" should be saved on the Planetarium Home Page
+    When the user provides a valid planet name "Testdone12" and image path "C:\\Users\\havisha\\Downloads\\jupiter.jpg"
+    Then the planet name "Testdone12" should be saved on the Planetarium Home Page
