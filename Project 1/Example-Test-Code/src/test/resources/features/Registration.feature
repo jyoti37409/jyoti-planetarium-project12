@@ -5,6 +5,7 @@ Feature: User Registration
     Given  the user is on the login page
     When   the user clicks the register link
 
+
   # Happy Path Scenario
   Scenario: Valid credential data should allow for registering with the Planetarium
     When   the user provides username "Robin" while registering
@@ -28,7 +29,7 @@ Feature: User Registration
   # For each row of data, Cucumber will execute the associated Scenario Outline
   Examples:
     |username|password|message|
-    |John  |Bobb1   |Invalid username    |
+    |Batman  |Bobb1   |Invalid username    |
     |bobb    |Bobb1   |Invalid username    |
     |Robin!%?|Bobb1   |Invalid username    |
     |3obin   |Bobb1   |Invalid username    |

@@ -94,4 +94,23 @@ public class AddPlanetSteps {
     }
 
 
+    @When("the user provides a invalid planet name {string} and image path {string}")
+    public void the_user_provides_a_invalid_planet_name_and_image_path(String planetName, String imagePath) {
+        addPlanetPage.selectLocationAsPlanet();
+        addPlanetPage.enterPlanetName(planetName);
+
+        if (!imagePath.isEmpty()) {
+            addPlanetPage.uploadPlanetImage(imagePath);
+        }
+
+        try {
+            addPlanetPage.clickButton();
+        } catch (UnhandledAlertException e) {
+            Alert alert = driver.switchTo().alert();
+            System.out.println("Unexpected alert: " + alert.getText());
+            alert.accept();
+        }
+    }
+
+
 }

@@ -76,4 +76,15 @@ public class LoginSteps {
     public void the_user_should_remain_on_the_login_page() {
         Assert.assertTrue(loginPage.isAtLoginPage());
     }
+
+    @When("the user provides an invalid username {string}")
+    public void theUserProvidesAnInvalidUsername(String invalidusername) {
+        loginPage.enterUsername(invalidusername);
+
+    }
+
+    @And("provides an invalid password {string}")
+    public void providesAnInvalidPassword(String invalidpassword) {
+        loginPage.enterPassword(invalidpassword);
+    }
 }
